@@ -1,4 +1,4 @@
-package com.example.composeapp.presentation.Onboarding.components
+package com.example.composeapp.presentation.onboarding.components
 
 import androidx.compose.runtime.Composable
 
@@ -6,3 +6,4 @@ import androidx.compose.runtime.Composable
 fun OnBoardingScreen(){
 
 }
+
