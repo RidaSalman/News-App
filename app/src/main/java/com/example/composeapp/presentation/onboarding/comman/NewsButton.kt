@@ -13,19 +13,26 @@ import androidx.compose.ui.unit.dp
 import com.example.composeapp.ui.theme.ComposeAppTheme
 
 @Composable
-fun NewsButton( text: String, onClick:()-> Unit){
+fun NewsButton( text: String,
+                onClick:()-> Unit){
     Button(onClick = onClick, colors = ButtonDefaults.buttonColors(
-        containerColor = MaterialTheme.colorScheme.primary,
-        contentColor = Color.White
+        contentColor = Color.White,
+        containerColor = MaterialTheme.colorScheme.primary
     ),
         shape = RoundedCornerShape(size = 6.dp)
         ) {
-        Text(
-            text = text,
-            style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.SemiBold)
-        )
+        Text(text = text,
+            style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.SemiBold))
         
     }
 
 }
 
+@Preview(showBackground = true)
+@Composable
+fun NewsButtonPreview(){
+        ComposeAppTheme {
+            NewsButton(text = "") {
+            }
+        }
+}
