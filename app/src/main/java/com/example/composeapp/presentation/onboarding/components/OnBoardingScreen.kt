@@ -19,22 +19,26 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.composeapp.presentation.onboarding.comman.NewsButton
+import com.example.composeapp.presentation.onboarding.comman.NewsTextButton
 import com.example.composeapp.presentation.onboarding.pages
 import com.example.composeapp.ui.theme.ComposeAppTheme
+import kotlinx.coroutines.launch
 
-
+@OptIn(ExperimentalFoundationApi::class)
 @SuppressLint("RememberReturnType")
 @Composable
 fun OnBoardingScreen() {
     Column(modifier = Modifier.fillMaxSize()) {
-        val pagerState = remember { mutableStateOf(0) }
+        val pagerState = rememberPagerState(initialPage = 0)
 
-        val buttonState = remember(pagerState.value) {
-            when (pagerState.value) {
+        val buttonState = remember(pagerState.currentPage) {
+            when (pagerState.currentPage) {
                 0 -> listOf("", "Next")
                 1 -> listOf("Back", "Next")
                 2 -> listOf("Back", "Next")
@@ -43,24 +47,55 @@ fun OnBoardingScreen() {
             }
         }
 
-        LazyColumn {
-            items(pages) { page ->
-                OnBoardingPage(page = page)
-            }
+        HorizontalPager(pageCount = pages.size, state = pagerState) { index ->
+            OnBoardingPage(page = pages[index])
         }
         Spacer(modifier = Modifier.weight(1f))
-        Row (modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 24.dp)
-            .navigationBarsPadding(),
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 24.dp)
+                .navigationBarsPadding(),
             horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically){
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            PageIndicator(
+                modifier = Modifier.width(52.dp),
+                pageSize = pages.size,
+                selectedPage = pagerState.currentPage
+            )
 
-            PageIndicator(modifier = Modifier.width(52.dp), pageSize = pages.size, selectedPage = pagerState.value)
-
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                val scope = rememberCoroutineScope()
+                if (buttonState[0].isNotEmpty()) {
+                    NewsTextButton(
+                        text = buttonState[0],
+                        onClick = {
+                            scope.launch {
+                                if (pagerState.currentPage > 0) {
+                                    pagerState.animateScrollToPage(pagerState.currentPage - 1)
+                                }
+                            }
+                        }
+                    )
+                }
+                NewsButton(
+                    text = buttonState[1],
+                    onClick = {
+                        scope.launch {
+                            if (pagerState.currentPage == 3) {
+                                // Handle last page action
+                            } else {
+                                pagerState.animateScrollToPage(pagerState.currentPage + 1)
+                            }
+                        }
+                    }
+                )
+            }
         }
     }
 }
+
 
 @Preview(showBackground = true)
 @Composable
