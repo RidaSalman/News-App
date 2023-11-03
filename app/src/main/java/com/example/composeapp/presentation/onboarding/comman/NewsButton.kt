@@ -1,6 +1,7 @@
 package com.example.composeapp.presentation.onboarding.comman
 
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.materialIcon
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
@@ -18,7 +19,7 @@ fun NewsButton( text: String,
                 onClick:()-> Unit){
     Button(onClick = onClick, colors = ButtonDefaults.buttonColors(
         contentColor = Color.White,
-        containerColor = MaterialTheme.colorScheme.primary
+        containerColor = Color.Blue
     ),
         shape = RoundedCornerShape(size = 6.dp)
         ) {
@@ -35,7 +36,10 @@ fun NewsTextButton(
     onClick: () -> Unit
 ){
     TextButton(onClick = onClick) {
-        
+        Text(text = text,
+            style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.SemiBold),
+            color = Color.Gray
+        )
     }
 
 }

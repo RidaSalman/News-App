@@ -22,6 +22,7 @@ class MainActivity : ComponentActivity() {
 
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window,false)
+        WindowCompat.setDecorFitsSystemWindows(window,false)
         installSplashScreen()
         setContent {
             ComposeAppTheme {
