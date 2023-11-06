@@ -10,14 +10,10 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.pager.HorizontalPager
-import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
@@ -37,13 +33,15 @@ fun OnBoardingScreen() {
     Column(modifier = Modifier.fillMaxSize()) {
         val pagerState = rememberPagerState(initialPage = 0)
 
-        val buttonState = remember(pagerState.currentPage) {
-            when (pagerState.currentPage) {
-                0 -> listOf("", "Next")
-                1 -> listOf("Back", "Next")
-                2 -> listOf("Back", "Next")
-                3 -> listOf("Back", "GetStarted")
-                else -> listOf("", "")
+        val buttonState = remember {
+            derivedStateOf {
+                when (pagerState.currentPage) {
+                    0 -> listOf("", "Next")
+                    1 -> listOf("Back", "Next")
+                    2 -> listOf("Back", "Next")
+                    3 -> listOf("Back", "GetStarted")
+                    else -> listOf("", "")
+                }
             }
         }
 
@@ -67,20 +65,18 @@ fun OnBoardingScreen() {
 
             Row(verticalAlignment = Alignment.CenterVertically) {
                 val scope = rememberCoroutineScope()
-                if (buttonState[0].isNotEmpty()) {
+                if (buttonState.value[0].isNotEmpty()) {
                     NewsTextButton(
-                        text = buttonState[0],
+                        text = buttonState.value[0],
                         onClick = {
                             scope.launch {
-                                if (pagerState.currentPage > 0) {
-                                    pagerState.animateScrollToPage(pagerState.currentPage - 1)
-                                }
+                                pagerState.animateScrollToPage(pagerState.currentPage - 1)
                             }
                         }
                     )
                 }
                 NewsButton(
-                    text = buttonState[1],
+                    text = buttonState.value[1],
                     onClick = {
                         scope.launch {
                             if (pagerState.currentPage == 3) {
