@@ -2,10 +2,9 @@ package com.example.composeapp.domain.manager
 
 import kotlinx.coroutines.flow.Flow
 
-interface LocalUserManger {
+interface LocalUserManager {
 
-    suspend fun saveAppEntry()
+     suspend fun saveAppEntry()
 
-    fun readAppEntry(): Flow<Boolean>
-
+     fun readAppEntry() : Flow<Boolean>
 }
