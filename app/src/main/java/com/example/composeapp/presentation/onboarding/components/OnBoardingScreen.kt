@@ -1,6 +1,6 @@
 package com.example.composeapp.presentation.onboarding.components
 
-import android.annotation.SuppressLint import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -26,9 +26,8 @@ import com.example.composeapp.presentation.onboarding.pages
 import com.example.composeapp.ui.theme.ComposeAppTheme
 import kotlinx.coroutines.launch
 @OptIn(ExperimentalFoundationApi::class)
-@SuppressLint("RememberReturnType")
 @Composable
-fun OnBoardingScreen() {
+fun OnBoardingScreen(){
     Column(modifier = Modifier.fillMaxSize()) {
         val pagerState = rememberPagerState(initialPage = 0)
 
@@ -47,7 +46,10 @@ fun OnBoardingScreen() {
         HorizontalPager(pageCount = pages.size, state = pagerState) { index ->
             OnBoardingPage(page = pages[index])
         }
+
+
         Spacer(modifier = Modifier.weight(1f))
+
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -62,18 +64,21 @@ fun OnBoardingScreen() {
                 selectedPage = pagerState.currentPage
             )
 
-            Row(verticalAlignment = Alignment.CenterVertically) {
+            Row(verticalAlignment = Alignment.CenterVertically){
+
                 val scope = rememberCoroutineScope()
                 if (buttonState.value[0].isNotEmpty()) {
                     NewsTextButton(
                         text = buttonState.value[0],
                         onClick = {
                             scope.launch {
+                                // Animate scrolling to the previous page.
                                 pagerState.animateScrollToPage(pagerState.currentPage - 1)
                             }
                         }
                     )
                 }
+
                 NewsButton(
                     text = buttonState.value[1],
                     onClick = {
@@ -86,12 +91,19 @@ fun OnBoardingScreen() {
                         }
                     }
                 )
-            }
-        }
-        Spacer(modifier = Modifier.weight(0.5f))
-    }
-}
 
+
+
+            }
+
+        }
+
+        Spacer(modifier = Modifier.weight(0.5f))
+
+    }
+
+
+}
 
 
 @Preview(showBackground = true)
