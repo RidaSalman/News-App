@@ -25,7 +25,6 @@ import com.example.composeapp.presentation.onboarding.comman.NewsTextButton
 import com.example.composeapp.presentation.onboarding.pages
 import com.example.composeapp.ui.theme.ComposeAppTheme
 import kotlinx.coroutines.launch
-
 @OptIn(ExperimentalFoundationApi::class)
 @SuppressLint("RememberReturnType")
 @Composable
@@ -92,6 +91,7 @@ fun OnBoardingScreen() {
         Spacer(modifier = Modifier.weight(0.5f))
     }
 }
+
 
 
 @Preview(showBackground = true)
