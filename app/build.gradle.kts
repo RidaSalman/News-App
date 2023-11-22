@@ -77,4 +77,7 @@ dependencies {
 
     //Splash Api
     implementation ("androidx.core:core-splashscreen:1.0.1")
+
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0" )// If not added already
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0") // If not added already
 }

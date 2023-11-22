@@ -13,11 +13,7 @@ import com.example.composeapp.presentation.onboarding.components.OnBoardingScree
 import com.example.composeapp.ui.theme.ComposeAppTheme
 
 
-
-
 class MainActivity : ComponentActivity() {
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
 

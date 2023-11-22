@@ -4,31 +4,35 @@ import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
+import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.preferencesDataStore
 import com.example.composeapp.domain.manager.LocalUserManager
-import com.google.android.datatransport.BuildConfig
+import com.example.composeapp.util.Constants
+import com.example.composeapp.util.Constants.USER_SETTINGS
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 
-const val App_Entry = "appEntry"
+class LocalUserManagerImpl(
+    private val context: Context
+) : LocalUserManager {
 
-class LocalUserManagerImpl(context: Context) : LocalUserManager {
-
-
-    private val Context.dataStore: DataStore<Preferences> by preferencesDataStore("Storage")
-
-    private object preferencesKey{
-        val APP_ENTRY = booleanPreferencesKey(name = App_Entry)
-    }
     override suspend fun saveAppEntry() {
-
-
+        context.dataStore.edit { settings ->
+            settings[PreferenceKeys.APP_ENTRY] = true
+        }
     }
 
     override fun readAppEntry(): Flow<Boolean> {
-        TODO("Not yet implemented")
+        return context.dataStore.data.map { preferences ->
+            preferences[PreferenceKeys.APP_ENTRY] ?: false
+        }
     }
-
-
 }
 
+private val readOnlyProperty = preferencesDataStore(name = USER_SETTINGS)
 
+val Context.dataStore: DataStore<Preferences> by readOnlyProperty
+
+private object PreferenceKeys {
+    val APP_ENTRY = booleanPreferencesKey(Constants.APP_ENTRY)
+}
