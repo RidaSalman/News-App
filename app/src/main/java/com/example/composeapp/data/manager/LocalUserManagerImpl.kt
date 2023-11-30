@@ -12,6 +12,7 @@ import com.example.composeapp.util.Constants.USER_SETTINGS
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
+
 class LocalUserManagerImpl(
     private val context: Context
 ) : LocalUserManager {
