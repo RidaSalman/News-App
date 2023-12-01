@@ -3,11 +3,10 @@ package com.example.composeapp.di
 import android.app.Application
 import com.example.composeapp.data.manager.LocalUserManagerImpl
 import com.example.composeapp.domain.manager.LocalUserManager
-import com.google.android.datatransport.runtime.dagger.Module
-import com.google.android.datatransport.runtime.dagger.Provides
-import com.example.composeapp.domain.manager.usecases.AppEntryUseCases
-import com.example.composeapp.domain.manager.usecases.ReadAppEntry
-import com.example.composeapp.domain.manager.usecases.SaveAppEntry
+
+import com.example.composeapp.domain.manager.usecases.app_entry.AppEntryUseCases
+import com.example.composeapp.domain.manager.usecases.app_entry.ReadAppEntry
+import com.example.composeapp.domain.manager.usecases.app_entry.SaveAppEntry
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -24,7 +23,6 @@ object AppModule {
         application: Application
     ): LocalUserManager = LocalUserManagerImpl(context = application)
 
-    /*@Provides
     @Provides
     @Singleton
     fun provideAppEntryUseCases(
@@ -33,6 +31,5 @@ object AppModule {
         readAppEntry = ReadAppEntry(localUserManger),
         saveAppEntry = SaveAppEntry(localUserManger)
     )
-    )*/
 
 }

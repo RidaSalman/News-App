@@ -67,6 +67,7 @@ dependencies {
     implementation ("androidx.datastore:datastore-preferences:1.0.0")
 
     implementation("com.google.android.datatransport:transport-runtime:3.2.0")
+    implementation("androidx.paging:paging-common-android:3.3.0-alpha02")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
@@ -92,12 +93,11 @@ dependencies {
 
     //Retrofit
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
 
     //Kotlinx Serialization
     implementation ("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
     implementation ("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:1.0.0")
-
-
 
 
     //Coil
