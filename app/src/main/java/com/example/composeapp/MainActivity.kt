@@ -15,7 +15,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.lifecycleScope
-import com.example.composeapp.domain.manager.usecases.AppEntryUseCases
 import com.example.composeapp.presentation.onboarding.comman.OnBoardingViewModel
 
 import com.example.composeapp.presentation.onboarding.components.OnBoardingScreen

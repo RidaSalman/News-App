@@ -3,6 +3,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
 
+
 }
 
 android {
@@ -32,11 +33,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
     buildFeatures {
         compose = true
@@ -68,6 +69,9 @@ dependencies {
 
     implementation("com.google.android.datatransport:transport-runtime:3.2.0")
     implementation("androidx.paging:paging-common-android:3.3.0-alpha02")
+    implementation("androidx.paging:paging-compose:3.2.1")
+    implementation("androidx.paging:paging-compose-android:3.3.0-alpha02")
+    implementation("com.google.android.material:material:1.10.0")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
@@ -75,21 +79,29 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
-    implementation ("com.google.dagger:hilt-android:2.41")
+    implementation ("com.google.dagger:hilt-android:2.49")
 
     //Splash Api
     implementation ("androidx.core:core-splashscreen:1.0.1")
 
-    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0" )// If not added already
-    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0") // If not added already
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2" )// If not added already
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1") // If not added already
 
     //Compose Navigation
-    implementation ("androidx.navigation:navigation-compose:2.6.0")
+    implementation ("androidx.navigation:navigation-compose:2.7.5")
 
     //Dagger Hilt
-    implementation ("com.google.dagger:hilt-android:2.45")
+    implementation ("com.google.dagger:hilt-android-gradle-plugin:2.49")
     kapt ("com.google.dagger:hilt-compiler:2.45")
-    implementation ("androidx.hilt:hilt-navigation-compose:1.0.0")
+    implementation ("androidx.hilt:hilt-navigation-compose:1.1.0")
+
+    // For instrumentation tests
+    androidTestImplementation  ("com.google.dagger:hilt-android-testing:2.49")
+    androidTestAnnotationProcessor ("com.google.dagger:hilt-compiler:2.49")
+
+    // For local unit tests
+    testImplementation ("com.google.dagger:hilt-android-testing:2.49")
+    testAnnotationProcessor ("com.google.dagger:hilt-compiler:2.49")
 
     //Retrofit
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
@@ -107,9 +119,16 @@ dependencies {
     implementation ("androidx.datastore:datastore-preferences:1.0.0")
 
     //Compose Foundation
-    implementation ("androidx.compose.foundation:foundation:1.4.3")
+    implementation ("androidx.compose.foundation:foundation:1.5.4")
 
     //Accompanist
     implementation ("com.google.accompanist:accompanist-systemuicontroller:0.31.4-beta")
+
+
+
+    implementation ("androidx.compose.material3:material3:1.2.0-alpha12")
+
+
+
 
 }
