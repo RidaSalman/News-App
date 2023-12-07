@@ -16,6 +16,7 @@
     <color name="input_background">#fff</color>
     <color name="placeholder">#A0A3BD</color>
     <color name="shimmer">#C3C3C3</color>
+    <color name="LightBlack">#1C1C1C</color>
 
     <color name="label">@color/black</color>
 
