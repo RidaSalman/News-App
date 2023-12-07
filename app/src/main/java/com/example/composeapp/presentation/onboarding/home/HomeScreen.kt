@@ -25,6 +25,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SearchBar
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
@@ -32,6 +33,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
@@ -42,9 +45,11 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.paging.PagingData
 import androidx.paging.compose.LazyPagingItems
 import com.example.composeapp.R
 import com.example.composeapp.domain.manager.model.Article
+import com.example.composeapp.domain.manager.model.Source
 import com.example.composeapp.presentation.onboarding.comman.ArticlesList
 import com.example.composeapp.presentation.onboarding.nvgraph.Route
 import com.example.composeapp.ui.theme.ComposeAppTheme
@@ -102,8 +107,8 @@ fun HomeScreen(articles: LazyPagingItems<Article>, navigate:(String) -> Unit) {
         Text(
             text = titles, modifier = Modifier
                 .fillMaxWidth()
-                .padding(start = 24.dp)
-                .basicMarquee(), fontSize = 12.sp,
+                .padding(start = 1.dp)
+                .basicMarquee(), fontSize = 14.sp,
             color = colorResource(id = R.color.placeholder)
         )
 
@@ -165,8 +170,7 @@ fun SearchBar(
             },
             shape = MaterialTheme.shapes.medium,
             colors = TextFieldDefaults.textFieldColors(
-                containerColor = colorResource(id = R.color.input_background),
-                /*textColor = if (isSystemInDarkTheme()) Color.White else Color.Black,*/
+                containerColor = if (isSystemInDarkTheme()) colorResource(id = R.color.LightBlack) else Color.White,
                 cursorColor = if (isSystemInDarkTheme()) Color.White else Color.Black,
                 disabledIndicatorColor = Color.Transparent,
                 errorIndicatorColor = Color.Transparent,
@@ -208,5 +212,7 @@ fun SearchBarPreview() {
         }
     }
 }
+
+
 
 

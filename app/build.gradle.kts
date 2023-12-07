@@ -2,7 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
-
+    id("com.google.dagger.hilt.android")
 
 }
 
@@ -68,9 +68,14 @@ dependencies {
     implementation ("androidx.datastore:datastore-preferences:1.0.0")
 
     implementation("com.google.android.datatransport:transport-runtime:3.2.0")
+/*
     implementation("androidx.paging:paging-common-android:3.3.0-alpha02")
+*/
     implementation("androidx.paging:paging-compose:3.2.1")
+
+/*
     implementation("androidx.paging:paging-compose-android:3.3.0-alpha02")
+*/
     implementation("com.google.android.material:material:1.10.0")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
@@ -92,7 +97,7 @@ dependencies {
 
     //Dagger Hilt
     implementation ("com.google.dagger:hilt-android-gradle-plugin:2.49")
-    kapt ("com.google.dagger:hilt-compiler:2.45")
+    kapt ("com.google.dagger:hilt-compiler:2.49")
     implementation ("androidx.hilt:hilt-navigation-compose:1.1.0")
 
     // For instrumentation tests
@@ -127,6 +132,10 @@ dependencies {
 
 
     implementation ("androidx.compose.material3:material3:1.2.0-alpha12")
+
+    implementation ("androidx.compose.ui:ui: 1.0.0")
+    implementation ("androidx.compose.material:material:1.5.4")
+    implementation ("androidx.compose.ui:ui-tooling:1.5.4")
 
 
 

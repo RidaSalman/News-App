@@ -55,7 +55,7 @@ fun ArticleCard(
         Column(
             verticalArrangement = Arrangement.SpaceAround,
             modifier = Modifier
-                .padding(horizontal = 3.dp)
+                .padding(horizontal = 8.dp)
                 .height(96.dp)
         ) {
             Text(
